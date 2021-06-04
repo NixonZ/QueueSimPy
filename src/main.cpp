@@ -1,8 +1,8 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/functional.h>
 #include <pybind11/stl.h>
-#include "../simulation/components/station.h"
-#include "../simulation/includes.h"
+#include "station.h"
+#include "includes.h"
 namespace py = pybind11;
 
 // int add(int i, int j=2) {
@@ -103,4 +103,4 @@ PYBIND11_MODULE(simulationpy, m) {
         .def("initialize_CSV",&station::initialize_CSV,py::arg("file_name"));
 }
 
-// c++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) example.cpp ../simulation/components/station.cpp  -o simulationpy$(python3-config --extension-suffix)
+// c++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) ./src/main.cpp ./src/station.cpp  -o simulationpy$(python3-config --extension-suffix)

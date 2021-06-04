@@ -34,6 +34,8 @@ t = 0.0
 ta = call_event_type_list(service_time,t)
 priority = 0
 
+waiting_time = []
+
 while discrete_events < 100:
 
 	t = np.min([station.find_min_td()]+ta)
@@ -48,9 +50,12 @@ while discrete_events < 100:
 		arriving_customer += 1
 		ta[priority] = t + arrival_processes[priority](t)
 	else:
-		station.departure_updates(t)
+		dept_cust = station.departure_updates(t)
+		print(dept_cust)
+		temp = station.get_counter_variable()[dept_cust[1]] # Perfectly valid for linear models, not for networks
+		waiting_time.append( (dept_cust[1],temp[5]-temp[4]) )
 	# print(station.get_counter_variable())
-	station.print_station_status(t)
+	# station.print_station_status(t)
 	discrete_events += 1
-
+print(waiting_time)
 # Simulation output in output.txt
