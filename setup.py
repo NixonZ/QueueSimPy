@@ -16,7 +16,7 @@ __version__ = "0.0.1"
 
 ext_modules = [
     Pybind11Extension("simulationpy",
-        ["src/main.cpp","src/station.cpp"],
+        ["src/main.cpp","src/station.cpp","src/tandem.cpp","src/queue_graphv2.cpp"],
         # Example: passing in the version to the compiled code
         define_macros = [('VERSION_INFO', __version__)],
         ),
