@@ -141,6 +141,7 @@ PYBIND11_MODULE(simulationpy, m) {
                 py::arg("init_network"),
                 py::arg("temp"),
                 py::arg("PatienceTimes"))
+        .def("find_least_dep_time",&graphv2::find_least_dep_time)
         .def("add_customer_to_graph",&graphv2::add_customer_to_graph,py::arg("t"),py::arg("customer_id"))
         .def("departure_updates",&graphv2::departure_updates,py::arg("station_index"),py::arg("t"))
         .def("server_updates",&graphv2::server_updates,py::arg("t"))
