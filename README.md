@@ -11,4 +11,4 @@ For loading the simulator in python follow the following steps:
 1. clone this repository.
 2. pip install ./SimulationPy
 
-Follow [Priority Queue Test](https://github.com/NixonZ/SimulationPy/tests/priority_testing.py) for an introduction on how to set up station and simulate.
+Follow [Priority Queue Test](https://github.com/NixonZ/SimulationPy/blob/main/tests/priority_testing.py) for an introduction on how to set up station and simulate.
