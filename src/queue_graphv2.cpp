@@ -239,6 +239,7 @@ void graphv2::write_to_csv(std::string file_name = "data_system")
     {
         if(std::get<4>(x) == 0)
             continue;
+        data << std::fixed << std::setprecision(precision);
         data << std::get<0>(x)[1] <<","
              << std::get<0>(x)[0] <<","
              << std::get<1>(x) <<","
@@ -295,6 +296,7 @@ void graphv2::dump_counter_variable_memory(std::string tandem_name = "data_syste
     {
         if(std::get<4>(x) == 0)
             continue;
+        data << std::fixed << std::setprecision(precision);
         data << std::get<0>(x)[1] <<","
              << std::get<0>(x)[0] <<","
              << std::get<1>(x) <<","
