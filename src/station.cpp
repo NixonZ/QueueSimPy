@@ -699,7 +699,7 @@ void station::dump_counter_variable_memory(std::string file_name)
              << int(std::get<1>(x) / 1440) % 7 << ','
              << std::get<4>(x) << ","
              << std::get<5>(x) << ","
-             << (std::get<4>(x) - std::get<1>(x)) << ","
+             << (std::get<5>(x) - std::get<1>(x)) << ","
              << "\n";
     }
     data.close();

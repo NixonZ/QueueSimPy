@@ -262,7 +262,7 @@ void graphv2::write_to_csv(std::string file_name = "data_system")
     data.close();
 }
 
-void graphv2::initialize_CSV(std::string tandem_name = "data_system")
+void graphv2::initialize_CSV(std::string tandem_name = "data_system",bool station = false)
 {
     std::ofstream data;
 
@@ -276,9 +276,16 @@ void graphv2::initialize_CSV(std::string tandem_name = "data_system")
     // }
     data <<"Time of start of service,Departure time,Wait time,\n";
     data.close();
+    if (station)
+    {
+        for(int i =0 ;i<this->station_list.size();i++)
+        {
+            this->station_list[i].initialize_CSV(tandem_name+"_"+ std::to_string(i));
+        }
+    }
 }
 
-void graphv2::dump_counter_variable_memory(std::string tandem_name = "data_system")
+void graphv2::dump_counter_variable_memory(std::string tandem_name = "data_system",bool station = false)
 {
     std::ofstream data;
 
@@ -321,7 +328,10 @@ void graphv2::dump_counter_variable_memory(std::string tandem_name = "data_syste
 
     for(int i =0 ;i<this->station_list.size();i++)
     {
-        station_list[i].dump_counter_variable_memory();
+        if(station)
+            station_list[i].dump_counter_variable_memory(tandem_name+"_"+ std::to_string(i));
+        else
+            station_list[i].dump_counter_variable_memory();
     }
 
     data.close();
@@ -337,4 +347,9 @@ void graphv2::logger(float t)
 int graphv2::num_classes()
 {
     return station_list[0].num_classes();
+}
+
+std::vector<station> graphv2::get_station_list()
+{
+    return this->station_list;
 }

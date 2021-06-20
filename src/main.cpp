@@ -146,8 +146,8 @@ PYBIND11_MODULE(simulationpy, m) {
         .def("departure_updates",&graphv2::departure_updates,py::arg("station_index"),py::arg("t"))
         .def("server_updates",&graphv2::server_updates,py::arg("t"))
         .def("write_to_csv",&graphv2::write_to_csv,py::arg("file_name"))
-        .def("initialize_CSV",&graphv2::initialize_CSV,py::arg("file_name"))
-        .def("dump_counter_variable_memory",&graphv2::dump_counter_variable_memory,py::arg("file_name"))
+        .def("initialize_CSV",&graphv2::initialize_CSV,py::arg("file_name"),py::arg("station") = false)
+        .def("dump_counter_variable_memory",&graphv2::dump_counter_variable_memory,py::arg("file_name"),py::arg("station") = false)
         .def("logger",&graphv2::logger,py::arg("t"))
         .def("num_classes",&graphv2::num_classes)
         .def("add_customer_to_graph_vir",&graphv2::add_customer_to_graph_vir,
@@ -155,7 +155,10 @@ PYBIND11_MODULE(simulationpy, m) {
                 py::arg("curr_customer"),
                 py::arg("keep_virtual"),
                 py::arg("arrival_process") = event_type_list(1, [](float t)-> float{return 0;} ),
-                py::arg("ta") = std::vector<float>(1,0.0));
+                py::arg("ta") = std::vector<float>(1,0.0))
+        .def("station_list",&graphv2::get_station_list);
+    // float infinite = INF;
+    m.attr("INF") = INF;
 }
 
 // c++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) ./src/main.cpp ./src/station.cpp ./src/tandem.cpp ./src/queue_graphv2.cpp  -o simulationpy$(python3-config --extension-suffix)
