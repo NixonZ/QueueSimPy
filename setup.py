@@ -15,7 +15,7 @@ __version__ = "0.0.1"
 #
 
 ext_modules = [
-    Pybind11Extension("simulationpy",
+    Pybind11Extension("queuesimpy",
         ["src/main.cpp","src/station.cpp","src/tandem.cpp","src/queue_graphv2.cpp"],
         # Example: passing in the version to the compiled code
         define_macros = [('VERSION_INFO', __version__)],
@@ -23,7 +23,7 @@ ext_modules = [
 ]
 
 setup(
-    name="simulationpy",
+    name="queuesimpy",
     version=__version__,
     author="Nalin Shani",
     author_email="nalinshani14@gmail.com",

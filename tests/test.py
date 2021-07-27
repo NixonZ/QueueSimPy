@@ -1,4 +1,4 @@
-from simulationpy import Station
+from queuesimpy import Station
 
 x = Station(10,10,[lambda t:10.0,lambda t:15.0],2,[lambda t: 0.0,lambda t: 0.0])
 x.add_customer_to_station(1.0,[0,0])

@@ -286,36 +286,41 @@ void graphv2::initialize_CSV(std::string tandem_name = "data_system",bool statio
     }
 }
 
-void graphv2::dump_counter_variable_memory(std::string tandem_name = "data_system",bool station = false)
+void graphv2::dump_counter_variable_memory(std::string tandem_name = "data_system",bool write = true,bool station = false)
 {
-    std::ofstream data;
-
-    data.open( tandem_name + ".csv", std::ofstream::app);
-    
-    for (auto &x : system_counter_variable)
+    if(write)
     {
-        if(std::get<4>(x) == 0)
-            continue;
-        data << std::fixed << std::setprecision(precision);
-        data << std::get<0>(x)[1] <<","
-             << std::get<0>(x)[0] <<","
-             << std::get<1>(x) <<","
-             << std::get<2>(x) << ","
-             << ((int(std::get<1>(x))) % 1440) / 10 << ','
-             << int(std::get<1>(x) / 1440) % 7 << ',';
+        std::ofstream data;
 
-        // for(auto &station_info:std::get<3>(x))
-        // {
-        //     data << std::get<0>(station_info) <<',';
-        //     data << std::get<1>(station_info) <<',';
-        //     data << std::get<2>(station_info) <<',';
-        // }
+        data.open( tandem_name + ".csv", std::ofstream::app);
+        
+        for (auto &x : system_counter_variable)
+        {
+            if(std::get<4>(x) == 0)
+                continue;
+            data << std::fixed << std::setprecision(precision);
+            data << std::get<0>(x)[1] <<","
+                << std::get<0>(x)[0] <<","
+                << std::get<1>(x) <<","
+                << std::get<2>(x) << ","
+                << ((int(std::get<1>(x))) % 1440) / 10 << ','
+                << int(std::get<1>(x) / 1440) % 7 << ',';
+
+            // for(auto &station_info:std::get<3>(x))
+            // {
+            //     data << std::get<0>(station_info) <<',';
+            //     data << std::get<1>(station_info) <<',';
+            //     data << std::get<2>(station_info) <<',';
+            // }
 
 
-        data << std::get<3>(x) << ","
-             << std::get<4>(x) << ","
-             << ( ( std::get<4>(x) == -1 )?-1:(std::get<4>(x) - std::get<1>(x)) ) << ","
-             << "\n";
+            data << std::get<3>(x) << ","
+                << std::get<4>(x) << ","
+                << ( ( std::get<4>(x) == -1 )?-1:(std::get<4>(x) - std::get<1>(x)) ) << ","
+                << "\n";
+
+            data.close();
+        }
     }
     
     std::vector<graph_data> system_counter_variable_temp;
@@ -330,13 +335,11 @@ void graphv2::dump_counter_variable_memory(std::string tandem_name = "data_syste
 
     for(int i =0 ;i<this->station_list.size();i++)
     {
-        if(station)
+        if(station && write)
             station_list[i].dump_counter_variable_memory(tandem_name+"_"+ std::to_string(i));
         else
             station_list[i].dump_counter_variable_memory();
     }
-
-    data.close();
 }
 
 void graphv2::logger(float t)

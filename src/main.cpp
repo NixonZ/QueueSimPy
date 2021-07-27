@@ -11,7 +11,7 @@ namespace py = pybind11;
 //     return i + j;
 // }
 
-PYBIND11_MODULE(simulationpy, m) {
+PYBIND11_MODULE(queuesimpy, m) {
     m.doc() = "Simulation for delay prediction.\n We follow a object oriented approach for creating a general Queueing System and getting simulated wait time data."; // optional module docstring
 
     // m.def("add", &add, "A function which adds two numbers",py::arg("i"),py::arg("j")=2);
@@ -147,7 +147,7 @@ PYBIND11_MODULE(simulationpy, m) {
         .def("server_updates",&graphv2::server_updates,py::arg("t"))
         .def("write_to_csv",&graphv2::write_to_csv,py::arg("file_name"))
         .def("initialize_CSV",&graphv2::initialize_CSV,py::arg("file_name"),py::arg("station") = false)
-        .def("dump_counter_variable_memory",&graphv2::dump_counter_variable_memory,py::arg("file_name"),py::arg("station") = false)
+        .def("dump_counter_variable_memory",&graphv2::dump_counter_variable_memory,py::arg("file_name"),py::arg("write") = true,py::arg("station") = false)
         .def("logger",&graphv2::logger,py::arg("t"))
         .def("num_classes",&graphv2::num_classes)
         .def("add_customer_to_graph_vir",&graphv2::add_customer_to_graph_vir,

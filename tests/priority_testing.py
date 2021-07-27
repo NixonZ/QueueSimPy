@@ -1,4 +1,4 @@
-from simulationpy import Station
+from queuesimpy import Station
 from random import random
 import numpy as np
 

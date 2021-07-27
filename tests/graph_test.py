@@ -1,6 +1,7 @@
-from simulationpy import QNetwork,Station,INF
+from queuesimpy import QNetwork,Station,INF
 import numpy as np
 from random import random
+import time
 
 
 U = lambda : random()
@@ -50,12 +51,13 @@ t = 0.0
 ta = call_event_type_list(arrival_processes,t)
 
 waiting_time = []
-System.initialize_CSV("./graph",True)
+System.initialize_CSV("./graph",False)
 
 
 System.logger(t)
+start = time.time()
 
-while discrete_events < 1000000:
+while discrete_events < 100000:
     least_station_index,least_dep_time = System.find_least_dep_time()
 
     t = np.min( [least_dep_time] + ta )
@@ -72,5 +74,8 @@ while discrete_events < 1000000:
     else:
         System.departure_updates(least_station_index,t)
     if discrete_events%1000 == 0:
-        System.dump_counter_variable_memory("./graph",True)
+        System.dump_counter_variable_memory("./graph",True,False)
     discrete_events += 1
+
+end = time.time()
+print(end - start)

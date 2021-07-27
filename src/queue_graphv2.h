@@ -43,7 +43,7 @@ public:
     void server_updates(float t);
     void write_to_csv(std::string file_name);
     void initialize_CSV(std::string file_name,bool station);
-    void dump_counter_variable_memory(std::string file_name,bool station);
+    void dump_counter_variable_memory(std::string file_name,bool write,bool station);
     void logger(float t);
     int num_classes();
     void add_customer_to_graph_vir(float t,customer curr_customer,bool keep_virtual = false, event_type_list arrival_processes = { [](float t)-> float{return 0;} },std::vector<float> ta = {0.0});
