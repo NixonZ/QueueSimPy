@@ -51,7 +51,7 @@ t = 0.0
 ta = call_event_type_list(arrival_processes,t)
 
 waiting_time = []
-System.initialize_CSV("./graph",False)
+# System.initialize_CSV("./graph",False)
 
 
 System.logger(t)
@@ -73,8 +73,8 @@ while discrete_events < 100000:
         ta[priority] = t + arrival_processes[priority](t)
     else:
         System.departure_updates(least_station_index,t)
-    if discrete_events%1000 == 0:
-        System.dump_counter_variable_memory("./graph",True,False)
+    if discrete_events%200 == 0:
+        System.dump_counter_variable_memory("./graph",False,False)
     discrete_events += 1
 
 end = time.time()

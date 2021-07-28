@@ -318,9 +318,9 @@ void graphv2::dump_counter_variable_memory(std::string tandem_name = "data_syste
                 << std::get<4>(x) << ","
                 << ( ( std::get<4>(x) == -1 )?-1:(std::get<4>(x) - std::get<1>(x)) ) << ","
                 << "\n";
-
-            data.close();
         }
+        
+        data.close();
     }
     
     std::vector<graph_data> system_counter_variable_temp;
